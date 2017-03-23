@@ -17,4 +17,4 @@ use Illuminate\Http\Request;
 //    return $request->user();
 //});
 
-Route::get('wechat/index', 'WechatController@index');
+Route::post('wechat/index', 'WechatController@index');
