@@ -8,4 +8,8 @@ class Mp extends Model
 {
     protected $table = 'mp';
 
+    protected $casts = [
+        'config' => 'array',
+    ];
+
 }

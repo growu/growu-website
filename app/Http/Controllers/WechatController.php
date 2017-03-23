@@ -34,8 +34,7 @@ class WechatController extends Controller
             echo "参数未配置";exit;
         }
 
-        $options = json_decode($this->mp->config,TRUE);
-        $this->wechat = new Application($options);
+        $this->wechat = new Application($this->mp->config);
     }
 
     public function index()
@@ -51,7 +50,7 @@ class WechatController extends Controller
                     return $this->parseEvent($message);
                     break;
                 case 'text':
-                    return '';
+                    return '嗯，收到';
                     break;
                 case 'image':
                     return '嗯，这个图片很美。';
@@ -89,6 +88,7 @@ class WechatController extends Controller
     {
         switch ($message->Event) {
             case 'subscribe':
+                $this->mp->increment('visits');
                 return '你好，第'.$this->mp->visits.'位朋友，欢迎来到格吾社区！
                 
 我们正努力打造成为一个高质量的学习和成长型社群，
@@ -96,7 +96,7 @@ class WechatController extends Controller
                 
 社区正在建设中，我们会不断完善和改进，欢迎提出宝贵的意见。
                 
-你也可以加入我们的QQ群（7852084）或者关注我们的新浪微博（@格吾社区），获取更多的信息和结识更多的伙伴。
+你也可以加入我们的QQ群（7852084）或者关注我们的新浪微博（<a href="http://weibo.com/growu">@格吾社区</a>），获取更多的信息和结识更多的伙伴。
                 ';
                 break;
             case 'location':
