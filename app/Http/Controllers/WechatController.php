@@ -18,6 +18,7 @@ class WechatController extends Controller
 {
 
     protected $wechat;
+    protected $mp;
 
     public function __construct()
     {
@@ -27,13 +28,13 @@ class WechatController extends Controller
             echo "非法的URL";exit;
         }
 
-        $mp = Mp::where('key',$key)->first();
+        $this->mp = Mp::where('key',$key)->first();
 
-        if(!$mp || !($mp->config)) {
+        if(! $this->mp || !($this->mp->config)) {
             echo "参数未配置";exit;
         }
 
-        $options = json_decode($mp->config,TRUE);
+        $options = json_decode($this->mp->config,TRUE);
         $this->wechat = new Application($options);
     }
 
@@ -47,25 +48,25 @@ class WechatController extends Controller
             switch ($message->MsgType) {
                 case 'event':
                     // 解析时间类型
-                    return '收到事件消息';
+                    return $this->parseEvent($message);
                     break;
                 case 'text':
-                    return '收到文字消息';
+                    return '你的信息我已收到！';
                     break;
                 case 'image':
-                    return '收到图片消息';
+                    return '嗯，这个图片很美。';
                     break;
                 case 'voice':
-                    return '收到语音消息';
+                    return '嗯，这个声音很好听。';
                     break;
                 case 'video':
-                    return '收到视频消息';
+                    return '嗯，这个视频很不错。';
                     break;
                 case 'location':
-                    return '收到坐标消息';
+                    return '嗯，我知道你在哪儿了。';
                     break;
                 case 'link':
-                    return '收到链接消息';
+                    return '嗯，我是不会打开的。';
                     break;
                 // ... 其它消息
                 default:
@@ -88,8 +89,10 @@ class WechatController extends Controller
     {
         switch ($message->Event) {
             case 'subscribe':
+                return '初次见面，多多关照，在这里，不谈风花雪月，只论学习成长，如果你有问题，下面的菜单可能会帮到你。';
                 break;
             case 'unsubscribe':
+                return '相见不如怀念，祝君好运。';
                 break;
         }
     }
