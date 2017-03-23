@@ -40,7 +40,7 @@ class WechatController extends Controller
     public function index(Request $request)
     {
         if($request->input('echostr')) {
-            $this->valid();
+            return $this->valid();
         }
 
         $this->wechat->server->setMessageHandler(function ($message) {
