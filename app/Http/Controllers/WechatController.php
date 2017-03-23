@@ -76,7 +76,10 @@ class WechatController extends Controller
             }
         });
 
-        return "no event";
+
+        $response = $this->wechat->server->serve();
+        // 将响应输出
+        return $response->send();
 
     }
 
