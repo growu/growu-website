@@ -89,17 +89,14 @@ class WechatController extends Controller
     {
         switch ($message->Event) {
             case 'subscribe':
-                return '你好，第'.$this->mp->visits.'位朋友，
-                欢迎来到格吾社区！
-                我们正在努力打造成为一个高质量的学习型和成长型的社群，
-                让每一位小伙伴都能够在这里挖掘和历炼成为更好的自己。
+                return '你好，第'.$this->mp->visits.'位朋友，欢迎来到格吾社区！
                 
-                社区正在建设中，
-                我们会不断完善和改进，
-                欢迎提出宝贵的意见。
+我们正努力打造成为一个高质量的学习和成长型社群，
+让你在这里能够发现和历炼成为更好的自己。
                 
-                你也可以加入我们的QQ群（7852084）或者关注我们的新浪微博（@格吾社区）
-                获取更多的信息和结识更多的伙伴。
+社区正在建设中，我们会不断完善和改进，欢迎提出宝贵的意见。
+                
+你也可以加入我们的QQ群（7852084）或者关注我们的新浪微博（@格吾社区），获取更多的信息和结识更多的伙伴。
                 ';
                 break;
             case 'location':
@@ -109,7 +106,7 @@ class WechatController extends Controller
                 $label = $message->Label;       // 地理位置信息
                 return '地理位置已上报';
                 break;
-            case 'click':
+            case 'CLICK':
                 return $this->paraseEventKey($message->EventKey);
             case 'unsubscribe':
                 return '相见不如怀念，祝君好运。';
