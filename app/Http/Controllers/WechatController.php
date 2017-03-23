@@ -51,7 +51,7 @@ class WechatController extends Controller
                     return $this->parseEvent($message);
                     break;
                 case 'text':
-                    return '你的信息我已收到！';
+                    return '';
                     break;
                 case 'image':
                     return '嗯，这个图片很美。';
@@ -80,7 +80,7 @@ class WechatController extends Controller
     }
 
     /**
-     * Set the default driver name.
+     * 解析事件
      *
      * @param  object  $message
      * @return object
@@ -89,8 +89,28 @@ class WechatController extends Controller
     {
         switch ($message->Event) {
             case 'subscribe':
-                return '初次见面，多多关照，在这里，不谈风花雪月，只论学习成长，如果你有问题，下面的菜单可能会帮到你。';
+                return '你好，第'.$this->mp->visits.'位朋友，
+                欢迎来到格吾社区！
+                我们正在努力打造成为一个高质量的学习型和成长型的社群，
+                让每一位小伙伴都能够在这里挖掘和历炼成为更好的自己。
+                
+                社区正在建设中，
+                我们会不断完善和改进，
+                欢迎提出宝贵的意见。
+                
+                你也可以加入我们的QQ群（7852084）或者关注我们的新浪微博（@格吾社区）
+                获取更多的信息和结识更多的伙伴。
+                ';
                 break;
+            case 'location':
+                $location_x = $message->Location_X;  // 地理位置纬度
+                $location_y = $message->Location_Y;  // 地理位置经度
+                $scale = $message->Scale;       // 地图缩放大小
+                $label = $message->Label;       // 地理位置信息
+                return '地理位置已上报';
+                break;
+            case 'click':
+                return $this->paraseEventKey($message->EventKey);
             case 'unsubscribe':
                 return '相见不如怀念，祝君好运。';
                 break;
@@ -98,25 +118,82 @@ class WechatController extends Controller
     }
 
     /**
-     * 验证
+     * 解析菜单事件
      *
-     * @return string
+     * @param  object  $message
+     * @return object
      */
-    public function valid()
+    protected function paraseEventKey($key)
     {
-        Log::info('wechat server valid.'); # 注意：Log 为 Laravel 组件，所以它记的日志去 Laravel 日志看，而不是 EasyWeChat 日志
+       // 获取具体的KEY
+        switch ($key) {
+            case 'menu_booklist':
+                return '书单整理中，稍后公布。';
+                break;
+            case 'menu_checkin':
+                return '想要早起、读书、运动或者更多，微信号：foxmee';
+                break;
+            case 'menu_about':
+                return '时间会告诉你我们是谁';
+                break;
+            case 'menu_concat':
+                return 'QQ群：7852084，微博：<a href="http://weibo.com/growu">@格物社区</a>';
+                break;
+            case 'menu_join':
+                return '我们需要你的才华，微信号：foxmee';
+                break;
+            default:
+                break;
+        }
+    }
 
-        $response = $this->wechat->server->serve();
+    /**
+     * 创建订单
+     *
+     * @param  null
+     * @return null
+     */
+    public function create_menu()
+    {
+        $menu = $this->wechat->menu;
 
-        Log::info('return response.');
-
-        return $response;
-
-//        $wechat->server->setMessageHandler(function($message){
-//            return "欢迎关注 overtrue！";
-//        });
-//
-//
-//        return $wechat->server->serve();
+        $buttons = [
+            [
+                "name"       => "格",
+                "sub_button" => [
+                    [
+                        "type" => "click",
+                        "name" => "书单",
+                        "key"  => "menu_booklist"
+                    ],
+                    [
+                        "type" => "click",
+                        "name" => "打卡",
+                        "key"  => "menu_checkin"
+                    ],
+                ],
+            ],
+            [
+                "name"       => "吾",
+                "sub_button" => [
+                    [
+                        "type" => "click",
+                        "name" => "关于我们",
+                        "key"  => "menu_about"
+                    ],
+                    [
+                        "type" => "click",
+                        "name" => "联系我们",
+                        "key"  => "menu_concat"
+                    ],
+                    [
+                        "type" => "click",
+                        "name" => "加入我们",
+                        "key" => "menu_join"
+                    ],
+                ],
+            ],
+        ];
+        $menu->add($buttons);
     }
 }
