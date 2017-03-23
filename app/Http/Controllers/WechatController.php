@@ -39,9 +39,9 @@ class WechatController extends Controller
 
     public function index(Request $request)
     {
-        if($request->input('echostr')) {
-            return $this->valid();
-        }
+//        if($request->input('echostr')) {
+//            return $this->valid();
+//        }
 
         $this->wechat->server->setMessageHandler(function ($message) {
             // $message->FromUserName // 用户的 openid
