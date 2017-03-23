@@ -11,6 +11,8 @@ namespace App\Http\Controllers;
 use Log;
 use App\Models\Mp;
 use EasyWeChat\Foundation\Application;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Http\Request;
 
 class WechatController extends Controller
 {
@@ -20,15 +22,25 @@ class WechatController extends Controller
     public function __construct()
     {
         $key = Input::get('key', false);
+
+        if(strlen($key) != 16) {
+            echo "非法的URL";exit;
+        }
+
         $mp = Mp::where('key',$key)->first();
+
+        if(!$mp || !($mp->config)) {
+            echo "参数未配置";exit;
+        }
+
         $options = json_decode($mp->config,TRUE);
         $this->wechat = new Application($options);
     }
 
-    public function index(Request $request, $key)
+    public function index(Request $request)
     {
         if($request->input('echostr')) {
-            $this->validate();
+            $this->valid();
         }
 
         $this->wechat->server->setMessageHandler(function ($message) {
@@ -64,6 +76,8 @@ class WechatController extends Controller
             }
         });
 
+        return "no event";
+
     }
 
     /**
@@ -87,9 +101,9 @@ class WechatController extends Controller
      *
      * @return string
      */
-    public function validate()
+    public function valid()
     {
-        Log::info('wechat server validate.'); # 注意：Log 为 Laravel 组件，所以它记的日志去 Laravel 日志看，而不是 EasyWeChat 日志
+        Log::info('wechat server valid.'); # 注意：Log 为 Laravel 组件，所以它记的日志去 Laravel 日志看，而不是 EasyWeChat 日志
 
         $response = $this->wechat->server->serve();
 

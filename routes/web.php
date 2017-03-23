@@ -15,4 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('wechat/index', 'WechatController@index')->name('wechat');
+//Route::post('wechat/index', 'WechatController@index')->name('wechat');
+
+Route::get('wechat/index', 'WechatController@index');

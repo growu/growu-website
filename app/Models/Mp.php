@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mp extends Model
 {
-    
+    protected $table = 'mp';
 
 }
