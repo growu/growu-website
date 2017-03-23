@@ -37,11 +37,9 @@ class WechatController extends Controller
         $this->wechat = new Application($options);
     }
 
-    public function index(Request $request)
+    public function index()
     {
-//        if($request->input('echostr')) {
-//            return $this->valid();
-//        }
+        Log::info(http_build_query($_REQUEST));
 
         $this->wechat->server->setMessageHandler(function ($message) {
             // $message->FromUserName // 用户的 openid
@@ -76,8 +74,7 @@ class WechatController extends Controller
             }
         });
 
-        $response = $this->wechat->server->serve();
-        return $response;
+        return $this->wechat->server->serve();
 
     }
 
