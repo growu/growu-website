@@ -47,6 +47,7 @@ class Weibo {
     const EVENT_UNSUBSCRIBE = "unsubscribe";
     const EVENT_FOLLOW = "follow";
     const EVENT_UNFOLLOW = "unfollow";
+    const EVENT_CLICK = "click";
 
 
 
