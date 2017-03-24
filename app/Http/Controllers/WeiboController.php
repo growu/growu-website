@@ -39,11 +39,18 @@ class WeiboController extends Controller
 
     public function index(Request $request)
     {
+        Log::info(file_get_contents('php://input'));
+
+
         if ($request->input("echostr")) {
             $this->weibo->valid();
         }
 
+        Log::info($this->weibo->getRev());
+
         $type = $this->weibo->getRev()->getRevType();
+
+        Log::info($this->weibo->getRev()->getRevType());
 
         switch ($type) {
             case Weibo::MSGTYPE_TEXT:
