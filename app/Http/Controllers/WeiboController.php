@@ -124,7 +124,8 @@ class WeiboController extends Controller
     public function create_menu()
     {
         $buttons = [
-            [
+            "button"=> [
+                [
                 "name"       => "格",
                 "sub_button" => [
                     [
@@ -139,7 +140,7 @@ class WeiboController extends Controller
                     ],
                 ],
             ],
-            [
+                [
                 "name"       => "吾",
                 "sub_button" => [
                     [
@@ -159,6 +160,7 @@ class WeiboController extends Controller
                     ],
                 ],
             ],
+            ]
         ];
         var_dump($this->weibo->createMenu($buttons));
     }
