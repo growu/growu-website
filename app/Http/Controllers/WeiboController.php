@@ -160,6 +160,6 @@ class WeiboController extends Controller
                 ],
             ],
         ];
-        $this->weibo->createMenu($buttons);
+        var_dump($this->weibo->createMenu($buttons));
     }
 }

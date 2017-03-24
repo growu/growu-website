@@ -19,4 +19,5 @@ Route::any('wechat/index', 'WechatController@index');
 Route::get('wechat/create_menu', 'WechatController@create_menu');
 
 Route::any('weibo/index', 'WeiboController@index');
+Route::get('weibo/create_menu', 'WeiboController@create_menu');
 

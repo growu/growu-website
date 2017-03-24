@@ -286,7 +286,7 @@ class Weibo {
         ), self::MENU_CREATE_URL);
 
         $parse = json_decode($result, true);
-        if ($parse['result']) {
+        if (isset($parse['result'])&&!empty($parse['result'])) {
             return array(
                 "code" => 200,
                 "message" => "菜单创建成功"

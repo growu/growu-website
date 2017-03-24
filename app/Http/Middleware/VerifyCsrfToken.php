@@ -13,6 +13,8 @@ class VerifyCsrfToken extends BaseVerifier
      */
     protected $except = [
         'wechat/index',
-        'weibo/index'
+        'wechat/create_menu',
+        'weibo/index',
+        'weibo/create_menu'
     ];
 }
