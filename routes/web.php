@@ -16,5 +16,7 @@ Route::get('/', function () {
 });
 
 Route::any('wechat/index', 'WechatController@index');
-
 Route::get('wechat/create_menu', 'WechatController@create_menu');
+
+Route::any('weibo/index', 'WeiboController@index');
+
