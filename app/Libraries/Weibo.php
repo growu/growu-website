@@ -163,7 +163,7 @@ class Weibo {
             "data" => json_encode($this->message)
         );
 
-        echo json_encode($msg);
+        echo json_encode($msg);exit;
     }
 
     /**

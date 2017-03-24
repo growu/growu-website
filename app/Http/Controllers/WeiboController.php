@@ -79,11 +79,9 @@ class WeiboController extends Controller
                         break;
                     case Weibo::MSGTYPE_MENTION:
                         $this->weibo->text("你的 @ 我已经收到，稍后会回复给你")->reply();
+                        return;
                         break;
                 }
-                $this->weibo
-                    ->text($this->weibo->getRevContent())
-                    ->reply();
                 break;
             default:
                 $this->weibo
