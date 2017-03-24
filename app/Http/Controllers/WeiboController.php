@@ -39,66 +39,60 @@ class WeiboController extends Controller
 
     public function index(Request $request)
     {
-        Log::info(file_get_contents('php://input'));
+        Log::info("微博粉丝客服平台请求消息");
 
+        Log::info(file_get_contents('php://input'));
 
         if ($request->input("echostr")) {
             $this->weibo->valid();
         }
 
-        Log::info($this->weibo->getRev());
-
         $type = $this->weibo->getRev()->getRevType();
 
-        Log::info($this->weibo->getRev()->getRevType());
-
         switch ($type) {
-            case Weibo::MSGTYPE_TEXT:
-                switch ($type) {
-                    case Weibo::MSGTYPE_TEXT:
+                case Weibo::MSGTYPE_TEXT:
+                    $this->weibo
+                        ->text($this->weibo->getRevContent())
+                        ->reply();
+                    return;
+                    break;
+                case Weibo::MSGTYPE_EVENT:
+                    $eventData = $this->weibo->getRevData();
+                    if ($eventData['subtype'] == Weibo::EVENT_FOLLOW) {
                         $this->weibo
-                            ->text($this->weibo->getRevContent())
-                            ->reply();
-                        return;
-                        break;
-                    case Weibo::MSGTYPE_EVENT:
-                        $eventData = $this->weibo->getRevData();
-                        if ($eventData['subtype'] == Weibo::EVENT_FOLLOW) {
-                            $this->weibo
-                                ->text('你好，第'.$this->wb->visits.'位朋友，欢迎来到格吾社区！
-                
+                            ->text('你好，第'.$this->wb->visits.'位朋友，欢迎来到格吾社区！
+            
 我们正努力打造成为一个高质量的学习和成长型社群，
 让你在这里能够发现和历炼成为更好的自己。
-                
+            
 社区正在建设中，我们会不断完善和改进，欢迎提出宝贵的意见。
-                
+            
 你也可以加入我们的QQ群（7852084）或者关注我们的微信公众号：格吾社区（growuu），获取更多的信息和结识更多的伙伴。')
-                                ->reply();
-                        } else if ($eventData['subtype'] == Weibo::EVENT_UNFOLLOW) {
-                            $this->weibo
-                                ->text("相见不如怀念")
-                                ->reply();
-                        } else if ($eventData['subtype'] == Weibo::EVENT_CLICK) {
-                            $content = $this->paraseEventKey($eventData['key']);
-                            $this->weibo
-                                ->text($content)
-                                ->reply();
-                        }
-                        return;
-                        break;
-                    case Weibo::MSGTYPE_MENTION:
-                        $this->weibo->text("你的 @ 我已经收到，稍后会回复给你")->reply();
-                        return;
-                        break;
-                }
-                break;
-            default:
-                $this->weibo
-                    ->text("Sorry,我不能识别这条信息！")
-                    ->reply();
-                return;
-                break;
-        }
+                            ->reply();
+                    } else if ($eventData['subtype'] == Weibo::EVENT_UNFOLLOW) {
+                        $this->weibo
+                            ->text("相见不如怀念")
+                            ->reply();
+                    } else if ($eventData['subtype'] == Weibo::EVENT_CLICK) {
+                        $content = $this->paraseEventKey($eventData['key']);
+                        $this->weibo
+                            ->text($content)
+                            ->reply();
+                    }
+                    return;
+                    break;
+                case Weibo::MSGTYPE_MENTION:
+                    $this->weibo->text("你的 @ 我已经收到，稍后会回复给你")->reply();
+                    return;
+                    break;
+                default:
+                    $this->weibo
+                        ->text("Sorry,我不能识别这条信息！")
+                        ->reply();
+                    return;
+                    break;
+            }
+
     }
 
     protected function paraseEventKey($key)
