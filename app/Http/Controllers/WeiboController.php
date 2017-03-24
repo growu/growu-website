@@ -52,6 +52,7 @@ class WeiboController extends Controller
                         $this->weibo
                             ->text($this->weibo->getRevContent())
                             ->reply();
+                        return;
                         break;
                     case Weibo::MSGTYPE_EVENT:
                         $eventData = $this->weibo->getRevData();
@@ -76,6 +77,7 @@ class WeiboController extends Controller
                                 ->text($content)
                                 ->reply();
                         }
+                        return;
                         break;
                     case Weibo::MSGTYPE_MENTION:
                         $this->weibo->text("你的 @ 我已经收到，稍后会回复给你")->reply();
@@ -87,6 +89,7 @@ class WeiboController extends Controller
                 $this->weibo
                     ->text("Sorry,我不能识别这条信息！")
                     ->reply();
+                return;
                 break;
         }
     }
