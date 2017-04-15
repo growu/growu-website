@@ -127,8 +127,11 @@ class WechatController extends Controller
             case 'menu_booklist':
                 return '书单整理中，稍后公布。';
                 break;
+            case 'menu_topic':
+                return '说一说#你坚持最久最有意义的事情#';
+                break;
             case 'menu_checkin':
-                return '想要早起、读书、运动或者更多，微信号：foxmee';
+                return '加微信foxmee，发送暗号：早起、读书、运动或者其他';
                 break;
             case 'menu_about':
                 return '时间会告诉你我们是谁';
@@ -156,22 +159,27 @@ class WechatController extends Controller
 
         $buttons = [
             [
-                "name"       => "格",
+                "name"       => "「格」",
                 "sub_button" => [
                     [
                         "type" => "click",
-                        "name" => "书单",
+                        "name" => "一周话题",
+                        "key"  => "menu_topic"
+                    ],
+                    [
+                        "type" => "click",
+                        "name" => "共读书单",
                         "key"  => "menu_booklist"
                     ],
                     [
                         "type" => "click",
-                        "name" => "打卡",
+                        "name" => "习惯打卡",
                         "key"  => "menu_checkin"
                     ],
                 ],
             ],
             [
-                "name"       => "吾",
+                "name"       => "「吾」",
                 "sub_button" => [
                     [
                         "type" => "click",
