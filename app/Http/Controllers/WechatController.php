@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use Log;
 use App\Models\Mp;
 use EasyWeChat\Foundation\Application;
+use EasyWeChat\Message\News;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 
