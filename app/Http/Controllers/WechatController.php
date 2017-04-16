@@ -50,6 +50,22 @@ class WechatController extends Controller
                     return $this->parseEvent($message);
                     break;
                 case 'text':
+
+                    $keyword = $message->Content;
+
+                    if(strstr($keyword,"书单")){
+                        $news = new News([
+                            'title'       => '「格吾读书」共读书单汇总',
+                            'description' => '更新至2017年3月',
+                            'url'         => 'http://mp.weixin.qq.com/s/3Md8HOoyTz1X2dIIC9QPdQ',
+                            'image'       => 'https://mmbiz.qlogo.cn/mmbiz_png/Sh6Ndnnr9galox1Mlic0GtshicF0QHliawFDkekMT44T6mKeeQR2VkKicXpg15icGZC7wtdrJwXKHFjccCNalMqqoUQ/0?wx_fmt=png',
+                            // ...
+                        ]);
+
+                        return [$news];
+                    }
+
+
                     return '嗯，收到';
                     break;
                 case 'image':
@@ -92,10 +108,13 @@ class WechatController extends Controller
                 return '你好，第'.$this->mp->visits.'位朋友，欢迎来到格吾社区！
                 
 我们正努力打造成为一个高质量的学习和成长型社群，
-让你在这里能够发现和历炼成为更好的自己。
-                
+希望能帮助你历炼成为更好的自己。
+
 社区正在建设中，我们会不断完善和改进，欢迎提出宝贵的意见。
+
+下方的菜单可能会有一些你感兴趣的东西，赶快去发掘吧。
                 
+               
 你也可以加入我们的QQ群（7852084）或者关注我们的新浪微博（<a href="http://weibo.com/growu">@格吾社区</a>），获取更多的信息和结识更多的伙伴。
                 ';
                 break;
@@ -125,7 +144,27 @@ class WechatController extends Controller
        // 获取具体的KEY
         switch ($key) {
             case 'menu_booklist':
-                return '书单整理中，稍后公布。';
+
+                $news = new News([
+                    'title'       => '「格吾读书」共读书单汇总',
+                    'description' => '更新至2017年3月',
+                    'url'         => 'http://mp.weixin.qq.com/s/3Md8HOoyTz1X2dIIC9QPdQ',
+                    'image'       => 'https://mmbiz.qlogo.cn/mmbiz_png/Sh6Ndnnr9galox1Mlic0GtshicF0QHliawFDkekMT44T6mKeeQR2VkKicXpg15icGZC7wtdrJwXKHFjccCNalMqqoUQ/0?wx_fmt=png',
+                    // ...
+                ]);
+
+                return [$news];
+                break;
+            case 'menu_booklist2':
+
+                $news = new News([
+                    'title'       => '「格吾读书」共读书单征集',
+                    'description' => '告诉我们，你想看的书',
+                    'url'         => 'http://mp.weixin.qq.com/s/5S28-Zg_U-PqPIX457UJBg',
+                    'image'       => 'https://mmbiz.qlogo.cn/mmbiz_png/Sh6Ndnnr9gZWrnVqQFIFFZe1wlpYm6UfYE91XQ0tupiafc4DfGdkfWgWbYK3BPJAVTKpVyXHcHQ9AFzb1Z7IFvw/0?wx_fmt=png',
+                ]);
+
+                return [$news];
                 break;
             case 'menu_topic':
                 return '说一说#你坚持最久最有意义的事情#';
@@ -168,8 +207,13 @@ class WechatController extends Controller
                     ],
                     [
                         "type" => "click",
-                        "name" => "共读书单",
+                        "name" => "书单汇总",
                         "key"  => "menu_booklist"
+                    ],
+                    [
+                        "type" => "click",
+                        "name" => "书单征集",
+                        "key"  => "menu_booklist2"
                     ],
                     [
                         "type" => "click",
