@@ -32,6 +32,15 @@ __/ |
     <link rel="stylesheet" href="{{ asset(mix('/css/app.css')) }}">
     <link rel="shortcut icon" href=""/>
     @yield('styles')
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?aa7608dc990f6527a175fd873d2d78b5";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 </head>
 <body id="body" class="">
 
