@@ -180,7 +180,14 @@ class WechatController extends Controller
                 return 'QQ群：7852084，微博：<a href="http://weibo.com/growu">@格物社区</a>';
                 break;
             case 'menu_join':
-                return '我们需要你的才华，微信号：foxmee';
+                $news = new News([
+                    'title'       => '1000个铁杆粉丝',
+                    'description' => '关于「格吾会员」的一些说明',
+                    'url'         => 'http://mp.weixin.qq.com/s/NxsRRkZiRwGOeAbkUi513w',
+                    'image'       => 'https://mmbiz.qlogo.cn/mmbiz_jpg/Sh6Ndnnr9gYVxOX4ssCfyTe2D5Gd7Micle4u8cvu653KcaQlDt8c9MoXuZGe1nN1Togvv33fh9Tcic9lMUYLxrGw/0?wx_fmt=jpeg',
+                ]);
+
+                return [$news];
                 break;
             default:
                 break;
@@ -238,7 +245,7 @@ class WechatController extends Controller
                     ],
                     [
                         "type" => "click",
-                        "name" => "加入我们",
+                        "name" => "成为会员",
                         "key" => "menu_join"
                     ],
                 ],
