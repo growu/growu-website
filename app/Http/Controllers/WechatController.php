@@ -64,10 +64,19 @@ class WechatController extends Controller
                         ]);
 
                         return [$news];
+                    } else  if(strstr($keyword,"会员")){
+                        $news = new News([
+                            'title'       => '「格吾会员」正式说明',
+                            'description' => '1000个铁杆粉丝',
+                            'url'         => 'http://mp.weixin.qq.com/s/NxsRRkZiRwGOeAbkUi513w',
+                            'image'       => 'https://mmbiz.qlogo.cn/mmbiz_jpg/Sh6Ndnnr9gYVxOX4ssCfyTe2D5Gd7Micle4u8cvu653KcaQlDt8c9MoXuZGe1nN1Togvv33fh9Tcic9lMUYLxrGw/0?wx_fmt=jpeg',
+                            // ...
+                        ]);
+
+                        return [$news];
                     }
 
-
-                    return '嗯，收到';
+                    return '你的消息我们已经收到，稍后将由格吾君亲自为你解答';
                     break;
                 case 'image':
                     return '嗯，这个图片很美。';
