@@ -57,19 +57,39 @@ class WechatController extends Controller
                     if(strstr($keyword,"书单")){
                         $news = new News([
                             'title'       => '「格吾读书」共读书单汇总',
-                            'description' => '更新至2017年3月',
+                            'description' => '更新至2017年5月',
                             'url'         => 'http://mp.weixin.qq.com/s/3Md8HOoyTz1X2dIIC9QPdQ',
                             'image'       => 'https://mmbiz.qlogo.cn/mmbiz_png/Sh6Ndnnr9galox1Mlic0GtshicF0QHliawFDkekMT44T6mKeeQR2VkKicXpg15icGZC7wtdrJwXKHFjccCNalMqqoUQ/0?wx_fmt=png',
                             // ...
                         ]);
 
                         return [$news];
-                    } else  if(strstr($keyword,"会员")){
+                    } else if(strstr($keyword,"会员")) {
                         $news = new News([
                             'title'       => '「格吾会员」正式说明',
                             'description' => '1000个铁杆粉丝',
                             'url'         => 'http://mp.weixin.qq.com/s/NxsRRkZiRwGOeAbkUi513w',
                             'image'       => 'https://mmbiz.qlogo.cn/mmbiz_jpg/Sh6Ndnnr9gYVxOX4ssCfyTe2D5Gd7Micle4u8cvu653KcaQlDt8c9MoXuZGe1nN1Togvv33fh9Tcic9lMUYLxrGw/0?wx_fmt=jpeg',
+                            // ...
+                        ]);
+
+                        return [$news];
+                    } else if(strstr($keyword,"早起")) {
+                        $news = new News([
+                            'title'       => '格吾「早起」训练营第1期招募公告',
+                            'description' => '时间：2017.5.15日-2017.6.3日',
+                            'url'         => 'http://mp.weixin.qq.com/s/S4X_8sf2-yG_HnmuL1EUiQ',
+                            'image'       => 'https://mmbiz.qlogo.cn/mmbiz_jpg/Sh6Ndnnr9gZbOncVErjcnqJSUl3ChTibJgeibLib1ggpLn9SN1ibgnFFSKNS1IrUkZ345XW6cPtDdic8jLWOjeLI2Iw/0?wx_fmt=jpeg',
+                            // ...
+                        ]);
+
+                        return [$news];
+                    } else if(strstr($keyword,"运动")) {
+                        $news = new News([
+                            'title'       => '格吾「运动」训练营第1期招募公告',
+                            'description' => '时间：2017.5.22日-2017.6.11日',
+                            'url'         => 'http://mp.weixin.qq.com/s/7WWa0xws8sngsoSvMwdlcQ',
+                            'image'       => 'https://mmbiz.qlogo.cn/mmbiz_jpg/Sh6Ndnnr9gaDhkNGY3lvpvQmO8QIypyyDHE4IuVE2nkPWLGQUrkwmgK2pcia3xVckBsa1ZQdInE5wFHyBgFJUOw/0?wx_fmt=jpeg',
                             // ...
                         ]);
 
@@ -180,7 +200,7 @@ class WechatController extends Controller
                 return '说一说#你坚持最久最有意义的事情#';
                 break;
             case 'menu_checkin':
-                return '加微信foxmee，发送暗号：早起、读书、运动或者其他';
+                return '为了帮助小伙伴们更好地培养兴趣和习惯，我特别开设了21天打卡训练营活动，欢迎有兴趣的朋友加入：，公众号内回复关键字 早起 运动 了解更多。';
                 break;
             case 'menu_about':
                 return '时间会告诉你我们是谁';
