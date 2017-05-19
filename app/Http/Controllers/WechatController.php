@@ -94,6 +94,15 @@ class WechatController extends Controller
                         ]);
 
                         return [$news];
+                    } else if(strstr($keyword,"俱乐部")) {
+                        $news = new News([
+                            'title'       => '格吾「俱乐部」正式说明',
+                            'description' => '找到志同道合的小伙伴',
+                            'url'         => 'http://mp.weixin.qq.com/s/7nXsv-fjgs83ymwCjnSTCA',
+                            'image'       => 'https://mmbiz.qlogo.cn/mmbiz_jpg/Sh6Ndnnr9ga4rHbEMNtib2ofAmpGjluvicfsg3Z5lnzO9fG4zm4apHKvFHoXRgObdjMqCyIe6Lv3G1vibzcbTjRTQ/0?wx_fmt=jpeg',
+                        ]);
+
+                        return [$news];
                     }
 
                     return '你的消息我们已经收到，稍后将由格吾君亲自为你解答';
@@ -142,7 +151,7 @@ class WechatController extends Controller
 
 社区正在建设中，我们会不断完善和改进，欢迎提出宝贵的意见。
 
-下方的菜单可能会有一些你感兴趣的东西，赶快去发掘吧。
+我们正在召集更多志同道合的小伙伴，回复 训练营 俱乐部 会员 了解更多。
                 
                
 你也可以加入我们的QQ群（7852084）或者关注我们的新浪微博（<a href="http://weibo.com/growu">@格吾社区</a>），获取更多的信息和结识更多的伙伴。
@@ -192,6 +201,18 @@ class WechatController extends Controller
                     'description' => '告诉我们，你想看的书',
                     'url'         => 'http://mp.weixin.qq.com/s/5S28-Zg_U-PqPIX457UJBg',
                     'image'       => 'https://mmbiz.qlogo.cn/mmbiz_png/Sh6Ndnnr9gZWrnVqQFIFFZe1wlpYm6UfYE91XQ0tupiafc4DfGdkfWgWbYK3BPJAVTKpVyXHcHQ9AFzb1Z7IFvw/0?wx_fmt=png',
+                ]);
+
+                return [$news];
+                break;
+
+            case 'menu_club':
+
+                $news = new News([
+                    'title'       => '格吾「俱乐部」正式说明',
+                    'description' => '找到志同道合的小伙伴',
+                    'url'         => 'http://mp.weixin.qq.com/s/7nXsv-fjgs83ymwCjnSTCA',
+                    'image'       => 'https://mmbiz.qlogo.cn/mmbiz_jpg/Sh6Ndnnr9ga4rHbEMNtib2ofAmpGjluvicfsg3Z5lnzO9fG4zm4apHKvFHoXRgObdjMqCyIe6Lv3G1vibzcbTjRTQ/0?wx_fmt=jpeg',
                 ]);
 
                 return [$news];
@@ -254,8 +275,13 @@ class WechatController extends Controller
                     ],
                     [
                         "type" => "click",
-                        "name" => "习惯打卡",
+                        "name" => "训练营",
                         "key"  => "menu_checkin"
+                    ],
+                    [
+                        "type" => "click",
+                        "name" => "俱乐部",
+                        "key"  => "menu_club"
                     ],
                 ],
             ],
