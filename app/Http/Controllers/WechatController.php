@@ -259,6 +259,12 @@ class WechatController extends Controller
                 "name"       => "「格」",
                 "sub_button" => [
                     [
+                        "type" => "view",
+                        "name" => "历史消息",
+                        "key"  => "menu_history",
+                        "url"  => 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzI0OTc5Njg2MQ==&scene=124#wechat_redirect'
+                    ],
+                    [
                         "type" => "click",
                         "name" => "一周话题",
                         "key"  => "menu_topic"
@@ -267,11 +273,6 @@ class WechatController extends Controller
                         "type" => "click",
                         "name" => "书单汇总",
                         "key"  => "menu_booklist"
-                    ],
-                    [
-                        "type" => "click",
-                        "name" => "书单征集",
-                        "key"  => "menu_booklist2"
                     ],
                     [
                         "type" => "click",
