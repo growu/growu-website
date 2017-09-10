@@ -144,17 +144,13 @@ class WechatController extends Controller
         switch ($message->Event) {
             case 'subscribe':
                 $this->mp->increment('visits');
-                return '你好，第'.$this->mp->visits.'位朋友，欢迎来到格吾社区！
-                
-我们正努力打造成为一个高质量的学习和成长型社群，
-希望能帮助你历炼成为更好的自己。
+                return '你好，新朋友！
+欢迎来到格吾社区。
+              
+我们正努力打造一个高质量的学习和成长型社群，
+希望在这里让你找到志同道合的小伙伴以及历练成为更好的自己。
 
-社区正在建设中，我们会不断完善和改进，欢迎提出宝贵的意见。
-
-我们正在召集更多志同道合的小伙伴，回复 训练营 俱乐部 会员 了解更多。
-                
-               
-你也可以加入我们的QQ群（7852084）或者关注我们的新浪微博（<a href="http://weibo.com/growu">@格吾社区</a>），获取更多的信息和结识更多的伙伴。
+点击下方的菜单，发现更多可能。
                 ';
                 break;
             case 'location':
@@ -256,7 +252,7 @@ class WechatController extends Controller
 
         $buttons = [
             [
-                "name"       => "「格」",
+                "name"       => "U+1F5E3",
                 "sub_button" => [
                     [
                         "type" => "view",
@@ -266,28 +262,13 @@ class WechatController extends Controller
                     ],
                     [
                         "type" => "click",
-                        "name" => "一周话题",
-                        "key"  => "menu_topic"
-                    ],
-                    [
-                        "type" => "click",
                         "name" => "书单汇总",
                         "key"  => "menu_booklist"
-                    ],
-                    [
-                        "type" => "click",
-                        "name" => "训练营",
-                        "key"  => "menu_checkin"
-                    ],
-                    [
-                        "type" => "click",
-                        "name" => "俱乐部",
-                        "key"  => "menu_club"
                     ],
                 ],
             ],
             [
-                "name"       => "「吾」",
+                "name"       => "U+1F463",
                 "sub_button" => [
                     [
                         "type" => "click",
@@ -303,6 +284,21 @@ class WechatController extends Controller
                         "type" => "click",
                         "name" => "成为会员",
                         "key" => "menu_join"
+                    ],
+                ],
+            ],
+            [
+                "name"       => "U+FE0F",
+                "sub_button" => [
+                    [
+                        "type" => "click",
+                        "name" => "关于我们",
+                        "key"  => "menu_about"
+                    ],
+                    [
+                        "type" => "click",
+                        "name" => "联系我们",
+                        "key"  => "menu_concat"
                     ],
                 ],
             ],
