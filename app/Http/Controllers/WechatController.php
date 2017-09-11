@@ -147,8 +147,7 @@ class WechatController extends Controller
                 return '你好，新朋友！
 欢迎来到格吾社区。
               
-我们正努力打造一个高质量的学习和成长型社群，
-希望在这里让你找到志同道合的小伙伴以及历练成为更好的自己。
+我们正努力打造一个高质量的学习和成长型社群，希望在这里让你找到志同道合的小伙伴以及历练成为更好的自己。
 
 点击下方的菜单，发现更多可能。
                 ';
@@ -182,7 +181,7 @@ class WechatController extends Controller
 
                 $news = new News([
                     'title'       => '「格吾读书」共读书单汇总',
-                    'description' => '更新至2017年3月',
+                    'description' => '更新至2017年6月',
                     'url'         => 'http://mp.weixin.qq.com/s/3Md8HOoyTz1X2dIIC9QPdQ',
                     'image'       => 'https://mmbiz.qlogo.cn/mmbiz_png/Sh6Ndnnr9galox1Mlic0GtshicF0QHliawFDkekMT44T6mKeeQR2VkKicXpg15icGZC7wtdrJwXKHFjccCNalMqqoUQ/0?wx_fmt=png',
                     // ...
@@ -220,7 +219,23 @@ class WechatController extends Controller
                 return '为了帮助小伙伴们更好地培养兴趣和习惯，我特别开设了21天打卡训练营活动，欢迎有兴趣的朋友加入：，公众号内回复关键字 早起 运动 了解更多。';
                 break;
             case 'menu_about':
-                return '时间会告诉你我们是谁';
+                $news = new News([
+                    'title'       => '关于我们',
+                    'description' => '格物致知，知行合一',
+                    'url'         => 'http://mp.weixin.qq.com/s/m1iVp0LiY_nohd-_xlRsbA',
+                    'image'       => 'https://mmbiz.qlogo.cn/mmbiz_jpg/Sh6Ndnnr9gb0Mp6ZpoN3tgrib2Alib15xuMHACH5QzCGz5ASrsVqAv72realW4psuWltqWxEiaeatGI9qGkzCQf0g/0?wx_fmt=jpeg',
+                ]);
+
+                return [$news];
+                break;
+            case 'menu_team':
+                $news = new News([
+                    'title'       => '团队成员',
+                    'description' => '我们是谁？',
+                    'url'         => 'http://mp.weixin.qq.com/s/LqaDy7kyyqywzbiGD-cp0g',
+                    'image'       => 'https://mmbiz.qlogo.cn/mmbiz_jpg/Sh6Ndnnr9gb0Mp6ZpoN3tgrib2Alib15xuUZbMtHFv4HXB5wkPcLoyZXzANwVTK5ZCe8Iicw5AzCibA4k70Mhoiat9Q/0?wx_fmt=jpeg',
+                ]);
+                return [$news];
                 break;
             case 'menu_concat':
                 return 'QQ群：7852084，微博：<a href="http://weibo.com/growu">@格物社区</a>';
@@ -252,7 +267,7 @@ class WechatController extends Controller
 
         $buttons = [
             [
-                "name"       => "U+1F5E3",
+                "name"       => "📖",
                 "sub_button" => [
                     [
                         "type" => "view",
@@ -268,37 +283,43 @@ class WechatController extends Controller
                 ],
             ],
             [
-                "name"       => "U+1F463",
+                "name"       => "👣",
                 "sub_button" => [
                     [
                         "type" => "click",
-                        "name" => "关于我们",
-                        "key"  => "menu_about"
+                        "name" => "训练营",
+                        "key"  => "menu_camp"
                     ],
                     [
                         "type" => "click",
-                        "name" => "联系我们",
-                        "key"  => "menu_concat"
+                        "name" => "社群",
+                        "key"  => "menu_club"
                     ],
                     [
                         "type" => "click",
-                        "name" => "成为会员",
-                        "key" => "menu_join"
+                        "name" => "工作坊",
+                        "key" => "menu_workshop"
+                    ],
+                    [
+                        "type" => "view",
+                        "name" => "水滴打卡",
+                        "key"  => "menu_drip",
+                        "url"  => "http://a.app.qq.com/o/simple.jsp?pkgname=me.growu.drip"
                     ],
                 ],
             ],
             [
-                "name"       => "U+FE0F",
+                "name"       => "👪",
                 "sub_button" => [
                     [
                         "type" => "click",
                         "name" => "关于我们",
-                        "key"  => "menu_about"
+                        "key"  => "menu_about",
                     ],
                     [
                         "type" => "click",
-                        "name" => "联系我们",
-                        "key"  => "menu_concat"
+                        "name" => "团队成员",
+                        "key"  => "menu_team"
                     ],
                 ],
             ],
